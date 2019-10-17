@@ -5,7 +5,7 @@ Some useful convolutional blocks implementations in pytorch
 - [x] Squeeze-and-Excitation Networks
 - [x] SRM: A Style-based Recalibration Module for Convolutional Neural Networks
 - [x] CBAM: Convolutional Block Attention Module
-- [ ] Drop an Octave: Reducing Spatial Redundancy in Convolutional Neural Networks with Octave Convolution
+- [x] Drop an Octave: Reducing Spatial Redundancy in Convolutional Neural Networks with Octave Convolution
 
 ### Networks
 - [ ] U-Net: Convolutional Networks for Biomedical Image Segmentation
