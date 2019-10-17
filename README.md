@@ -13,6 +13,6 @@ Some useful convolutional blocks implementations in pytorch
 - [ ] Residual U-Net
 
 ### Losses
-- [ ] SSIM and MSSIM
+- [ ] SSIM and MSSSIM
 - [ ] Perceptual Loss
 - [ ] Gram Matrix Style Loss
