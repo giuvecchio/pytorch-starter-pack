@@ -8,11 +8,11 @@ Some useful convolutional blocks implementations in pytorch
 - [x] Drop an Octave: Reducing Spatial Redundancy in Convolutional Neural Networks with Octave Convolution
 
 ### Networks
-- [ ] U-Net: Convolutional Networks for Biomedical Image Segmentation
+- [x] U-Net: Convolutional Networks for Biomedical Image Segmentation
 - [ ] The One Hundred Layers Tiramisu: Fully Convolutional DenseNets for Semantic Segmentation
 - [ ] Residual U-Net
 
 ### Losses
-- [ ] SSIM and MSSSIM
+- [x] SSIM and MSSSIM
 - [ ] Perceptual Loss
 - [ ] Gram Matrix Style Loss
