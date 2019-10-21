@@ -170,7 +170,8 @@ class LastOctaveConv(nn.Module):
         groups (int, optional): Number of blocked connections from input channels to output channels. Default: 1
         bias (bool, optional): If ``True``, adds a learnable bias to the output. Default: ``True``
         norm_layer (optional): If not ``None`` used for features normalization. Default: ``nn.BatchNorm2d``
-        activation (optional): If not ``None`` applies a non linearity. Default: ``nn.ReLU``
+        final_activation (optional): If not ``None`` applies a non linearity. Default: ``nn.ReLU``
+        activation_args (dict): Optional parameters for final_activation.
 
     Shape:
         - Input: :math:`(N, C_{h_in}, H_{h_in}, W_{h_in}), (N, C_{l_in}, H_{l_in}, W_{l_in}))`
@@ -178,7 +179,7 @@ class LastOctaveConv(nn.Module):
         `C_{out} = out_planes`
     """
     def __init__(self, in_planes, out_planes, kernel_size, alpha=0.5, stride=1, padding=1, dilation=1,
-                 groups=1, bias=False, norm_layer=nn.BatchNorm2d, activation=nn.ReLU):
+                 groups=1, bias=False, norm_layer=nn.BatchNorm2d, final_activation=nn.ReLU, activation_args={}):
         super(LastOctaveConv, self).__init__()
         self.stride = stride
         kernel_size = kernel_size[0]
@@ -194,7 +195,7 @@ class LastOctaveConv(nn.Module):
         if norm_layer:
             self.norm = norm_layer(int(out_planes))
 
-        self.activation = activation()
+        self.final_activation = final_activation(**activation_args)
 
     def forward(self, x):
         x_h, x_l = x
@@ -211,8 +212,8 @@ class LastOctaveConv(nn.Module):
         if self.norm:
             x_h = self.norm(x_h)
 
-        if self.activation:
-            x_h = self.activation(x_h)
+        if self.final_activation:
+            x_h = self.final_activation(x_h)
 
         return x_h
 

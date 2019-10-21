@@ -30,7 +30,7 @@ class UNet(nn.Module):
                            'upconv' will use transposed convolutions for
                            learned upsampling.
                            'upsample' will use bilinear upsampling.
-        """
+    """
 
     def __init__(self, in_channels=1, out_channels=2, depth=5, filters_growth_rate=6, padding=True, norm_layer=nn.BatchNorm2d, up_mode='upconv'):
         super(UNet, self).__init__()
@@ -38,6 +38,8 @@ class UNet(nn.Module):
         self.padding = padding
         self.depth = depth
         prev_channels = in_channels
+
+        # Downsampling path
         self.down_path = nn.ModuleList()
         for i in range(depth):
             self.down_path.append(
@@ -46,6 +48,7 @@ class UNet(nn.Module):
             )
             prev_channels = 2 ** (filters_growth_rate + i)
 
+        # Upsampling path
         self.up_path = nn.ModuleList()
         for i in reversed(range(depth - 1)):
             self.up_path.append(
@@ -54,6 +57,7 @@ class UNet(nn.Module):
             )
             prev_channels = 2 ** (filters_growth_rate + i)
 
+        # Final conv
         self.last = nn.Conv2d(prev_channels, out_channels, kernel_size=1)
 
     def forward(self, x):
